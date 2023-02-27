@@ -1,0 +1,22 @@
+<main>
+  <section class="py-5 text-center container">
+    <div class="row py-lg-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Search page</h1>
+      </div>
+    </div>
+  </section>
+</main>
+</html>
+
+
+
+<%= form_with url: search_path, method: :get, data: {turbo: false}, class: 'search-form' do |form|%>
+  <%= form.label :name, style: "display: block"%>
+  <%= form.text_field :name, value: params[:name] %>
+  <%= form.label :type_language, style: "display: block" %>
+  <%= form.text_field :type_language, value: params[:type_language] %>
+  <%= form.label :designed_by, style: "display: block" %>
+  <%= form.number_field :designed_by, value: params[:designed_by] %>
+  <%=form.submit 'Search' %>
+<% end %>
