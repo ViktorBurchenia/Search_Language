@@ -1,0 +1,30 @@
+
+<div id="search result">
+  <div class="mb-2 mt-2">
+    <h2>Search Result</h2>
+  </div>
+  <table class="table table-bordered table-hover table-fixed">
+    <thead>
+      <tr>
+        <th scope="col"><%= t('search.name') %></th>
+        <th scope="col"><%= t('search.language_type') %></th>
+        <th scope="col"><%= t('search.designed_by') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @results.each do |r| %>
+      <tr>
+        <td>
+          <%= r.name %>
+        </td>
+        <td>
+          <%= r.language_type %>
+        </td>
+        <td>
+          <%= r.designed_by%>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
