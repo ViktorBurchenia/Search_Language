@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get 'home', to: 'welcome#index'
-  get 'search', to: 'searches#search'
+  get 'search', to: 'languages#search'
 end

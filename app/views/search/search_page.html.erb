@@ -8,15 +8,22 @@
   </section>
 </main>
 </html>
-
-
-
 <%= form_with url: search_path, method: :get, data: {turbo: false}, class: 'search-form' do |form|%>
   <%= form.label :name, style: "display: block"%>
   <%= form.text_field :name, value: params[:name] %>
-  <%= form.label :type_language, style: "display: block" %>
-  <%= form.text_field :type_language, value: params[:type_language] %>
+  <%= form.label :language_type, style: "display: block" %>
+  <%= form.text_field :language_type, value: params[:language_type] %>
   <%= form.label :designed_by, style: "display: block" %>
-  <%= form.number_field :designed_by, value: params[:designed_by] %>
-  <%=form.submit 'Search' %>
+  <%= form.text_field :designed_by, value: params[:designed_by] %>
+  <div class="mb-5 mt-2">
+    <%=form.submit 'Search' %>
+  </div>
 <% end %>
+
+  <div>
+    <%- unless @results.blank? %>
+      <%= render 'search/search'%>
+    <% end %>
+  </div>
+
+
