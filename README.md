@@ -26,3 +26,8 @@ Make this data searchable https://gist.github.com/g3d/d0b84a045dd6900ca4cb
 - This exercise is not meant to take more than 6 - 8 hours
 - A readme file is highly encouraged
 - It's preferable if you don't use a database for this small data set, instead read the JSON file
+
+## Update how to upload db for searches
+- rails db:create
+- rails db:migrate
+- rails db:seed
