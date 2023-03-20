@@ -5,11 +5,13 @@ class Search
     @search_params = search_params
     @negative_result = []
     @positive_result = []
+    @results_name = []
   end
 
   def search_result
     return unless @search_params
 
+    name_params
     language_type_params
     designed_by_params
 
@@ -54,11 +56,19 @@ class Search
     @negative_result << Language.where('designed_by LIKE ?', "%#{neg_design.join(',')}%") if neg_design.present?
   end
 
-  def calculate_result
-    @search_params[:name] = 'Common Lisp' if @search_params[:name] == 'Lisp Common'
-    results_name = Language.where('name LIKE ?', "%#{@search_params[:name]}%") if @search_params[:name].present?
+  def name_params
+    return if @search_params[:name].blank?
 
-    @positive_result << results_name
+    split_name = @search_params[:name].split(' ')
+    split_name.each do |element|
+      @results_name << Language.where('name LIKE ?', "%#{element}%")
+    end
+    @results_name.uniq
+  end
+
+  def calculate_result
+
+    @positive_result << @results_name.flatten.compact
     @positive_result = @positive_result.flatten.compact
     @negative_result = @negative_result.flatten.compact
 
